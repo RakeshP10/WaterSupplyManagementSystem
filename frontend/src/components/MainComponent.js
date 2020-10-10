@@ -5,6 +5,7 @@ import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import MyCart from './MyCartComponent';
+import Shop from './ShopComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component{
@@ -15,6 +16,7 @@ class Main extends Component{
                 <Switch>
                     <Route path='/home' component={Home} />
                     <Route exact path='/aboutus' component={About} /> 
+                    <Route exact path='/shop' component={Shop} />
                     <Route exact path='/mycart' component={MyCart} /> 
                     <Route exact path='/contactus' component={Contact} /> 
                     <Redirect to="/home" />
