@@ -55,13 +55,19 @@ function Navbar1() {
                             </NavItem>
 
                             <NavItem className="nav-item">
-                                <NavLink className="nav-link" to='/login' onClick={closeMobileMenu}>
+                              {button ? (
+                                <NavLink className="nav-link" to='/login'>
                                 <Button primary >SIGN UP</Button>
                                 </NavLink>
+                              ): (
+                                <NavLink to='/login'>
+                                  <Button onClick={closeMobileMenu} primary>
+                                    SIGN UP
+                                  </Button>
+                                </NavLink>
+                              )}
                             </NavItem>                            
-                        
-                
-                        
+                                                
                         </Nav>
 
                     </div>
