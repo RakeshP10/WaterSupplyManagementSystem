@@ -22,6 +22,7 @@ class Header extends Component {
   render() {
     return(
       <div>
+        
         <Navbar dark expand="md">
           <div className="container">
               <NavbarToggler onClick={this.toggleNav} />
@@ -40,10 +41,14 @@ class Header extends Component {
                       <NavItem>
                           <NavLink className="nav-link" to='/contactus'> Contact Us</NavLink>
                       </NavItem>
+                      <NavItem id="log">
+                          <NavLink className="nav-link" to='/login'>Login</NavLink>
+                      </NavItem>
                   </Nav>
               </Collapse>
           </div>
         </Navbar>
+
         <Jumbotron>
             <div className="container">
                 <div className="row row-header">
@@ -54,6 +59,7 @@ class Header extends Component {
                 </div>
             </div>
         </Jumbotron>
+
        </div>
     );
   }
