@@ -1,47 +1,43 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Media,Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import {bottles} from '../shared/bottles';
-
-function RenderList({item}){
-    return (
-            <div key={item.id} className="col-12 mt-5">
-                <Media tag="li" className="media">
-                    <Media left middle>
-                        <Media object className="mediaimage" src={item.image} alt={item.name} />
-                    </Media>
-                    <Media body className="ml-5">
-                        <Media heading className="mediaheading">{item.name}</Media>
-                        <hr></hr>
-                        <p className="mediabody">{item.description}</p>
-                        <p className="mediabody"><b>Price:</b>{item.price}</p>
-                        <Button className="buttons" color="success">
-                            Buy
-                        </Button>
-                        <Button className="buttons" color="secondary">
-                            Add to Cart
-                        </Button>
-                    </Media>
-                </Media>
-            </div>
-      );
-}
+import { connect } from 'react-redux'
+import { addToCart } from '../redux/CartAction';
 
 class Shop extends Component {
     constructor(){
         super();
 
-        this.state={
-            Bottles:bottles
-        }
+    }
+
+    handleClick = (id)=>{
+        this.props.addToCart(id); 
     }
 
     render(){
 
-        const bottles = this.state.Bottles.map((bottle) => {
+        const bottles = this.props.items.map((item) => {
             return (
-                    <RenderList item={bottle} />
-            );
+                <div key={item.id} className="col-12  mt-5">
+                    <Media tag="li" className="media">
+                        <Media left middle>
+                            <Media object className="mediaimage" src={item.image} alt={item.name} />
+                        </Media>
+                        <Media body className="ml-5">
+                            <Media heading className="mediaheading">{item.name}</Media>
+                            <hr></hr>
+                            <p className="mediabody">{item.description}</p>
+                            <p className="mediabody"><b>Price:</b>{item.price}</p>
+                            <Button className="buttons" color="success">
+                                Buy
+                            </Button>
+                            <Button onClick={()=>{this.handleClick(item.id)}} className="buttons" color="secondary">
+                                Add to Cart
+                            </Button>
+                        </Media>
+                    </Media>
+                </div>
+          );
         });
 
         return(
@@ -57,9 +53,7 @@ class Shop extends Component {
                     </div>                
                 </div>
                 <div className="row row-content">
-                    <div className="col-12">
-                        {bottles}   
-                    </div>
+                    {bottles}   
                 </div>
             </div>
             
@@ -67,4 +61,18 @@ class Shop extends Component {
     }
    
 }
-export default Shop;
+
+const mapStateToProps = (state)=>{
+    return {
+      items: state.items
+    }
+  }
+
+const mapDispatchToProps= (dispatch)=>{
+    
+    return{
+        addToCart: (id)=>{dispatch(addToCart(id))}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Shop);

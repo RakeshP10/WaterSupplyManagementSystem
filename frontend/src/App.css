@@ -35,7 +35,7 @@ address{
 }
 
 .media{
-    outline-width:1px; 
+    outline-width:2px; 
     outline-style:solid;
     background-color:lightcyan;
     outline-color:blue;
@@ -65,5 +65,35 @@ address{
 }
 
 
+/* */
+
+.cartmedia{
+    outline-width:2px; 
+    outline-style:solid;
+    background-color:rosybrown;
+    outline-color:black;
+}
+
+.cartmediaheading{
+    font-size:40px;
+    margin:10px;
+    color:#0f0f0f;
+}
+
+.cartbuttons{ 
+    align-items: center;
+    justify-content: center;
+}
+
+.cartmediaimage{
+    width:250px;
+    height:250px;
+}
+
+.cartmediabody{
+    font-size:20px;
+    margin:10px;
+    color:#0f0f0f;
+}
 
 
