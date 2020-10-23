@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Breadcrumb, BreadcrumbItem,Button,Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import { removeItem,addQuantity,subtractQuantity} from '../redux/CartAction';
 
 class MyCart extends Component {
+
+    handleRemove = (id)=>{
+        this.props.removeItem(id);
+    }
+
+    handleAddQuantity = (id)=>{
+        this.props.addQuantity(id);
+    }
+    
+    handleSubtractQuantity = (id)=>{
+        this.props.subtractQuantity(id);
+    }
+
     render(){
         let addedItems = this.props.items.length ?
         (  
@@ -19,7 +32,16 @@ class MyCart extends Component {
                             <Media heading className="cartmediaheading">{item.name}</Media>
                             <hr></hr>
                             <p className="cartmediabody">{item.description}</p>
-                            <p className="cartmediabody"><b>Price:</b>{item.price}</p>
+                            <pre className="cartmediabody">
+                                <b>Price:<i class="fa fa-inr"></i></b>{item.price}    
+                                <b>Quantity:</b> {item.quantity}
+                                <div class="btn-group-vertical">
+                                <Button  onClick={()=>{this.handleAddQuantity(item.id)}}><i class="fa fa-caret-up"></i></Button>
+                                <Button  onClick={()=>{this.handleSubtractQuantity(item.id)}}><i class="fa fa-caret-down"></i></Button>
+                                </div>  
+                            </pre>
+                            <Button className="buttons" color="success" >Buy Now</Button>
+                            <Button className="buttons" color="danger" onClick={()=>{this.handleRemove(item.id)}}>Remove</Button>
                         </Media>
                     </Media>
                 </div>
@@ -69,8 +91,16 @@ class MyCart extends Component {
 const mapStateToProps = (state)=>{
     return{
         items: state.addedItems,
-        //addedItems: state.addedItems
+        addedItems: state.addedItems
     }
 }
 
-export default connect(mapStateToProps)(MyCart);
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        removeItem: (id)=>{dispatch(removeItem(id))},
+        addQuantity: (id)=>{dispatch(addQuantity(id))},
+        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MyCart);

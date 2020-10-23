@@ -50,7 +50,7 @@ address{
 .buttons{
     margin:5px;
     width:150px;
-    height:60px;
+    height:50px;
 }
 
 .mediaimage{
@@ -70,7 +70,7 @@ address{
 .cartmedia{
     outline-width:2px; 
     outline-style:solid;
-    background-color:rosybrown;
+    background-color:lightslategray;
     outline-color:black;
 }
 
@@ -86,8 +86,8 @@ address{
 }
 
 .cartmediaimage{
-    width:250px;
-    height:250px;
+    width:270px;
+    height:270px;
 }
 
 .cartmediabody{
@@ -95,5 +95,4 @@ address{
     margin:10px;
     color:#0f0f0f;
 }
-
 
