@@ -1,56 +1,55 @@
-import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem,Form, FormGroup, Input, Label,Button  } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "./Login.css";
+import Axios from "axios";
 
-class Login extends Component { 
-    constructor(props) {
-        super(props);
-    this.handleLogin = this.handleLogin.bind(this);
-    }
-    handleLogin(event) {
-        this.toggleModal();
-        alert("Username: " + this.username.value + " Password: " + this.password.value
-            + " Remember: " + this.remember.checked);
-        event.preventDefault();
+import { useHistory } from "react-router-dom";
 
-    }
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    render()
-    {
-    return(
-        <div className="container">
-            <div className="row">
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>Login</BreadcrumbItem>
-                </Breadcrumb>
-                <div class="container">
-                <div class="row">
-                <Form onSubmit={this.handleLogin}>
-                    <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={(input) => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={(input) => this.password = input}  />
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" name="remember"
-                                    innerRef={(input) => this.remember = input}  />
-                                    Remember me
-                                </Label>
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Login</Button>
-                        </Form>   
-                    </div>               
-                </div>
-            </div>
-        </div>
-    );
-    }
+  const [errorMessage, setErrorMessage] = useState("");
+
+  let history = useHistory();
+
+  const login = () => {
+    Axios.post("http://localhost:3001/user/login", {
+      username: username,
+      password: password,
+    }).then((response) => {
+      if (response.data.loggedIn) {
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("username", response.data.username);
+        history.push("/");
+      } else {
+        setErrorMessage(response.data.message);
+      }
+    });
+  };
+
+  return (
+    <div className="Login">
+      <h1>Login</h1>
+      <div className="LoginForm">
+        <input
+          type="text"
+          placeholder="Username..."
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+        <input
+          type="password"
+          placeholder="Password..."
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+        <button onClick={login}>Login</button>
+        <h1 style={{ color: "red" }}>{errorMessage} </h1>
+      </div>
+    </div>
+  );
 }
+
 export default Login;
