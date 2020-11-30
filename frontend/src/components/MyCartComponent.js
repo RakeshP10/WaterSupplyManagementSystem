@@ -82,6 +82,19 @@ class MyCart extends Component {
                 <div className="row">
                     {addedItems}
                 </div>
+                
+                <div className="row">
+                    
+                    <label>
+                        <input type="checkbox" ref="shipping" onChange= {this.handleChecked} />
+                    </label>
+                    
+                    <b>Total:Rs {this.props.total}</b>
+                </div>
+                <div>
+                    <Button className="buttons" color="success" >Checkout</Button>
+                </div>
+                 
             </div>
         );
     }
@@ -91,7 +104,8 @@ class MyCart extends Component {
 const mapStateToProps = (state)=>{
     return{
         items: state.addedItems,
-        addedItems: state.addedItems
+        addedItems: state.addedItems,
+        total: state.total
     }
 }
 
