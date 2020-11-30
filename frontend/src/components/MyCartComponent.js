@@ -40,7 +40,9 @@ class MyCart extends Component {
                                 <Button  onClick={()=>{this.handleSubtractQuantity(item.id)}}><i class="fa fa-caret-down"></i></Button>
                                 </div>  
                             </pre>
-                            <Button className="buttons" color="success" >Buy Now</Button>
+                            <Link to='/checkout'>
+                                <Button className="buttons" color="success" to='/checkout'>Buy Now</Button>
+                            </Link>
                             <Button className="buttons" color="danger" onClick={()=>{this.handleRemove(item.id)}}>Remove</Button>
                         </Media>
                     </Media>
@@ -83,16 +85,13 @@ class MyCart extends Component {
                     {addedItems}
                 </div>
                 
-                <div className="row">
-                    
-                    <label>
-                        <input type="checkbox" ref="shipping" onChange= {this.handleChecked} />
-                    </label>
-                    
-                    <b>Total:Rs {this.props.total}</b>
+                <div className="row">       
+                    <h3><b>Total:Rs {this.props.total}</b></h3>
                 </div>
                 <div>
+                    <Link to='/checkout'>
                     <Button className="buttons" color="success" >Checkout</Button>
+                    </Link>
                 </div>
                  
             </div>

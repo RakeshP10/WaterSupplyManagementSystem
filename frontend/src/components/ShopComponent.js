@@ -28,9 +28,11 @@ class Shop extends Component {
                             <hr></hr>
                             <p className="mediabody">{item.description}</p>
                             <p className="mediabody"><b>Price:</b>{item.price}</p>
-                            <Button className="buttons" color="success">
+                            <Link to='/checkout'>
+                            <Button className="buttons" color="success" onClick={()=>{this.handleClick(item.id)}}>
                                 Buy
                             </Button>
+                            </Link>
                             <Button onClick={()=>{this.handleClick(item.id)}} className="buttons" color="secondary">
                                 Add to Cart
                             </Button>
