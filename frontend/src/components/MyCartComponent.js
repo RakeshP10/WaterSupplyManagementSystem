@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Breadcrumb, BreadcrumbItem,Button,Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { removeItem,addQuantity,subtractQuantity} from '../redux/CartAction';
-import Footer from './FooterComponent';
-import Navbar1 from './Navbar';
+
 class MyCart extends Component {
 
     handleRemove = (id)=>{
@@ -69,8 +68,6 @@ class MyCart extends Component {
         )
 
         return(
-            <div>
-            <Navbar1/>
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
@@ -85,8 +82,19 @@ class MyCart extends Component {
                 <div className="row">
                     {addedItems}
                 </div>
-            </div>
-            <Footer/>
+                
+                <div className="row">
+                    
+                    <label>
+                        <input type="checkbox" ref="shipping" onChange= {this.handleChecked} />
+                    </label>
+                    
+                    <b>Total:Rs {this.props.total}</b>
+                </div>
+                <div>
+                    <Button className="buttons" color="success" >Checkout</Button>
+                </div>
+                 
             </div>
         );
     }
@@ -96,7 +104,8 @@ class MyCart extends Component {
 const mapStateToProps = (state)=>{
     return{
         items: state.addedItems,
-        addedItems: state.addedItems
+        addedItems: state.addedItems,
+        total: state.total
     }
 }
 
