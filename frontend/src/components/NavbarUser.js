@@ -4,7 +4,7 @@ import { Button } from './Button';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar1() {
+function NavbarUser() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -39,30 +39,30 @@ function Navbar1() {
 
             <Nav navbar className={click ? 'nav-menu active' : 'nav-menu'}>            
                             <NavItem className="nav-item">
-                                <NavLink className="nav-link"  to='/home' onClick={closeMobileMenu}><span className="fa fa-home fa-lg"></span> Home</NavLink>
+                                <NavLink className="nav-link"  to='/userhome' onClick={closeMobileMenu}><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
                             <NavItem className="nav-item">
-                                <NavLink className="nav-link" to='/aboutus' onClick={closeMobileMenu}><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                                <NavLink className="nav-link" to='/useraboutus' onClick={closeMobileMenu}><span className="fa fa-info fa-lg"></span> About Us</NavLink>
                             </NavItem>
                             <NavItem className="nav-item">
-                                <NavLink className="nav-link"  to='/shop' onClick={closeMobileMenu}><span className="fa fa-list fa-lg"></span> Shop</NavLink>
+                                <NavLink className="nav-link"  to='/usershop' onClick={closeMobileMenu}><span className="fa fa-list fa-lg"></span> Shop</NavLink>
                             </NavItem>
                             <NavItem className="nav-item">
-                                <NavLink className="nav-link" to='/mycart' onClick={closeMobileMenu}><span className="fa fa-shopping-cart fa-lg"></span> My Cart</NavLink>
+                                <NavLink className="nav-link" to='/usermycart' onClick={closeMobileMenu}><span className="fa fa-shopping-cart fa-lg"></span> My Cart</NavLink>
                             </NavItem>
                             <NavItem className="nav-item">
-                                <NavLink className="nav-link" to='/contactus' onClick={closeMobileMenu}><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
+                                <NavLink className="nav-link" to='/usercontactus' onClick={closeMobileMenu}><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                             </NavItem>
 
                             <NavItem className="nav-item">
                               {button ? (
-                                <NavLink className="nav-link" to='/register'>
-                                <Button primary >SIGN UP</Button>
+                                <NavLink className="nav-link" to='/profile'>
+                                <Button primary >My Profile</Button>
                                 </NavLink>
                               ): (
-                                <NavLink to='/register'>
+                                <NavLink to='/userhome'>
                                   <Button onClick={closeMobileMenu} primary>
-                                    SIGN UP
+                                    My Profile
                                   </Button>
                                 </NavLink>
                               )}
@@ -76,4 +76,4 @@ function Navbar1() {
   );
 }
 
-export default Navbar1;
+export default NavbarUser;

@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Media,Button} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Media,Button, Navbar} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addToCart } from '../redux/CartAction';
-
+import Footer from './FooterComponent';
+import Navbar1 from './Navbar';
 class Shop extends Component {
     constructor(){
         super();
 
     }
-
     handleClick = (id)=>{
         alert('Item Added to your Cart');
         this.props.addToCart(id); 
     }
 
     render(){
-
         let bottles = this.props.items.map((item) => {
             return (
                 <div key={item.id} className="col-12  mt-2 mb-2">
@@ -42,6 +41,8 @@ class Shop extends Component {
         });
 
         return(
+            <div>
+                <Navbar1/>
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
@@ -57,11 +58,13 @@ class Shop extends Component {
                     {bottles}   
                 </div>
             </div>
+            <Footer/>
+            </div>
             
             
         );
+
     }
-   
 }
 
 const mapStateToProps = (state)=>{

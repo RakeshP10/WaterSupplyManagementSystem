@@ -4,8 +4,8 @@ import img1 from "../assets/man1.jpg";
 import img2 from "../assets/man1.jpg";
 import img3 from "../assets/man1.jpg";
 import { Link } from 'react-router-dom';
-
-
+import Footer from './FooterComponent';
+import Navbar1 from './Navbar';
 const Abc = props =>{
     return(
         <div className="card text-center">
@@ -23,8 +23,10 @@ const Abc = props =>{
 
 class About extends Component{
     render(){
+
         return(
-            
+            <div>
+            <Navbar1/>
             <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -87,8 +89,12 @@ class About extends Component{
                     
                 </div>
             </div>
-    </div>        
+            </div>
+            <Footer /> 
+    </div>   
+ 
         );
+           
     }
 }
 export default About;

@@ -43,38 +43,6 @@ router.post("/login", (req, res) => {
       }
     }
   );
-
 });
 
-router.post("/contactus", (req, res) => {
-  const firstname = req.body.firstname;
-  const lastname = req.body.lastname;
-  const telnum = req.body.telnum;
-  const email = req.body.email;
-  const message = req.body.message;
-  db.query(
-    "INSERT INTO feedback (firstname, lastname,telnum,email,message) VALUES (?, ?,?,?,?);",
-    [firstname, lastname,telnum, email,message],
-    (err, results) => {
-      console.log(err);
-      res.send(results);
-    }
-  );
-});
-
-
-router.get("/getprofile", (req, res) => {
-  db.query(
-    "SELECT * FROM registration",
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      }
-      else{
-        console.log(results);
-        res.send(results);
-      }
-    }
-  );
-});
 module.exports = router;

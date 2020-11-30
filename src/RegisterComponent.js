@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import "./style.css";
 import loginImg from "../login.svg";
+import "./style.css";
 import Axios from "axios";
-import Navbar1 from './Navbar';
-import { useHistory } from "react-router-dom";
-import Footer from "./FooterComponent";
+
 function Register(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [mobileno, setMobile] = useState("");
   const [password, setPassword] = useState("");
-
-  let history = useHistory();
 
   const register = () => {
     console.log(username);
@@ -22,15 +18,10 @@ function Register(props) {
       password: password,
     }).then((response) => {
       console.log(response);
-      history.push("/login");
-      alert("Successfully Registered");
-
     });
   };
 
   return (
-    <div>
-      <Navbar1/>
     <div className="base-container" ref={props.containerRef}>
     <div className="header">Register</div>
     <div className="content">
@@ -76,13 +67,9 @@ function Register(props) {
         Register
       </button>
     </div>
-    <div>
-      <h5>Already Have An Account? <a class="ml-2" href="./login">Login</a></h5>
-    </div>
   </div>
-  <Footer/>
-  </div>
-  );
+);
 }
+
 
 export default Register;

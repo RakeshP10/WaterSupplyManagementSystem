@@ -1,38 +1,47 @@
-import React, { useState } from "react";
-import "./style.css";
-import loginImg from "../login.svg";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import loginImg from "../login.svg";
+import "./style.css";
 import { useHistory } from "react-router-dom";
-import Footer from './FooterComponent';
-import Navbar1 from './Navbar';
+
 function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [loginStatus, setLoginStatus] = useState("");
   let history = useHistory();
 
+  Axios.defaults.withCredentials = true;
+
   const login = () => {
-    Axios.post("http://localhost:3001/user/login", {
+    Axios.post("http://localhost:3001/login", {
       username: username,
       password: password,
     }).then((response) => {
       if (response.data.loggedIn) {
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("username", response.data.username);
-        history.push("/userview");
-        alert("Sucessfully Logged In");
+        setLoginStatus(response.data.message);
+        history.push("/");
       } else {
         setErrorMessage(response.data.message);
+        setLoginStatus(response.data[0].username);
       }
     });
   };
 
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/login").then((response) => {
+      if (response.data.loggedIn == true) {
+        setLoginStatus(response.data.user[0].username);
+      }
+    });
+  }, []);
+
   return (
-    <div>
-    <Navbar1/>
-<div className="base-container" ref={props.containerRef}>
+      <div className="base-container" ref={props.containerRef}>
         <div className="header">Login</div>
         <div className="content">
           <div className="image">
@@ -62,9 +71,7 @@ function Login(props) {
           <h1 style={{ color: "red" }}>{errorMessage} </h1>
         </div>
       </div>
-      <Footer/>
-      </div>
-  );
+    );
 }
 
 export default Login;

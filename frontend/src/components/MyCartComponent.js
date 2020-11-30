@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Breadcrumb, BreadcrumbItem,Button,Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { removeItem,addQuantity,subtractQuantity} from '../redux/CartAction';
-
+import Footer from './FooterComponent';
+import Navbar1 from './Navbar';
 class MyCart extends Component {
 
     handleRemove = (id)=>{
@@ -68,6 +69,8 @@ class MyCart extends Component {
         )
 
         return(
+            <div>
+            <Navbar1/>
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
@@ -82,6 +85,8 @@ class MyCart extends Component {
                 <div className="row">
                     {addedItems}
                 </div>
+            </div>
+            <Footer/>
             </div>
         );
     }
