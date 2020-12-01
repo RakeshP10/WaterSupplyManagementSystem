@@ -16,7 +16,7 @@ const Abc = props =>{
                 <h4 className="card-title">{props.title}</h4>
                 <p className="card-text text-secondary">{props.discription}</p>
             </div>
-            <a href="#" className="btn btn-outline-success">Go Anywhere</a>
+            <a href="#" className="btn btn-outline-success">More Details</a>
         </div>
     );
 }
@@ -76,15 +76,15 @@ class About extends Component{
                             <h2>Details</h2>
                         </div>
                     <div className="col-md-4">
-                        <Abc imgsrc={img1} title="Title 1" discription="This is description 1"/>
+                        <Abc imgsrc={img1} title="Owner 1" discription="This is description 1"/>
                     </div>
             
                     <div className="col-md-4">
-                        <Abc imgsrc={img2} title="Title 2" discription="This is description 2"/>
+                        <Abc imgsrc={img2} title="Owner 2" discription="This is description 2"/>
                     </div>
             
                     <div className="col-md-4">
-                        <Abc imgsrc={img3} title="Title 3" discription="This is description 3"/>
+                        <Abc imgsrc={img3} title="Owner 3" discription="This is description 3"/>
                     </div>
                     
                 </div>

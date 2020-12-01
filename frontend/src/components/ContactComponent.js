@@ -18,6 +18,8 @@ const [message, setMessage] = useState("");
 
     
 const feedback = () => {
+
+        alert('Thank You for Your Valuable Feedback');
 		
 		Axios.post("http://localhost:3001/user/contactus", {
 		  firstname: firstname,

@@ -11,6 +11,17 @@ const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class Checkout extends Component{
+    constructor(props) {
+        super(props);
+        
+        this.handleSubmit = this.handleSubmit.bind(this);
+        
+    }
+    handleSubmit(values) {
+        console.log('Your Order is placed');
+        alert('Your Order is placed');
+      
+    }
 
     render(){
         
@@ -131,7 +142,7 @@ class Checkout extends Component{
                             </Row>
 
                             <div>
-                            <Button className="buttons" color="danger" >Place Order</Button>
+                            <Button className="buttons" color="danger" onClick={this.handleSubmit}>Place Order</Button>
                             </div>
                             
                         </LocalForm>
