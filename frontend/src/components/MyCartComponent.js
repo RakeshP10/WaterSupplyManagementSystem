@@ -40,9 +40,7 @@ class MyCart extends Component {
                                 <Button  onClick={()=>{this.handleSubtractQuantity(item.id)}}><i class="fa fa-caret-down"></i></Button>
                                 </div>  
                             </pre>
-                            <Link to='/checkout'>
-                                <Button className="buttons" color="success" to='/checkout'>Buy Now</Button>
-                            </Link>
+                            <Button className="buttons" color="success" >Buy Now</Button>
                             <Button className="buttons" color="danger" onClick={()=>{this.handleRemove(item.id)}}>Remove</Button>
                         </Media>
                     </Media>
@@ -84,16 +82,6 @@ class MyCart extends Component {
                 <div className="row">
                     {addedItems}
                 </div>
-                
-                <div className="row">       
-                    <h3><b>Total:Rs {this.props.total}</b></h3>
-                </div>
-                <div>
-                    <Link to='/checkout'>
-                    <Button className="buttons" color="success" >Checkout</Button>
-                    </Link>
-                </div>
-                 
             </div>
         );
     }
@@ -103,8 +91,7 @@ class MyCart extends Component {
 const mapStateToProps = (state)=>{
     return{
         items: state.addedItems,
-        addedItems: state.addedItems,
-        total: state.total
+        addedItems: state.addedItems
     }
 }
 

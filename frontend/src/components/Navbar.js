@@ -56,11 +56,11 @@ function Navbar1() {
 
                             <NavItem className="nav-item">
                               {button ? (
-                                <NavLink className="nav-link" to='/register'>
+                                <NavLink className="nav-link" to='/login'>
                                 <Button primary >SIGN UP</Button>
                                 </NavLink>
                               ): (
-                                <NavLink to='/register'>
+                                <NavLink to='/login'>
                                   <Button onClick={closeMobileMenu} primary>
                                     SIGN UP
                                   </Button>

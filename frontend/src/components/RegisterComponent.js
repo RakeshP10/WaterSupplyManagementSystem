@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import "./style.css";
-import loginImg from "../login.svg";
+import "./Register.css";
+
 import Axios from "axios";
-import Navbar1 from './Navbar';
-import { useHistory } from "react-router-dom";
-import Footer from "./FooterComponent";
-function Register(props) {
+
+function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [mobileno, setMobile] = useState("");
   const [password, setPassword] = useState("");
-
-  let history = useHistory();
 
   const register = () => {
     console.log(username);
@@ -22,66 +18,44 @@ function Register(props) {
       password: password,
     }).then((response) => {
       console.log(response);
-      history.push("/login");
-      alert("Successfully Registered");
-
     });
   };
 
   return (
-    <div>
-      <Navbar1/>
-    <div className="base-container" ref={props.containerRef}>
-    <div className="header">Register</div>
-    <div className="content">
-      <div className="image">
-        <img src={loginImg} />
-      </div>
-      <div className="form">
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input type="text" name="username" placeholder="username"          
-            onChange={(event) => {
+    <div className="Register">
+      <h1>Registration</h1>
+      <div className="RegisterForm">
+        <input
+          type="text"
+          placeholder="Username..."
+          onChange={(event) => {
             setUsername(event.target.value);
-          }}/>
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input type="text" name="email" placeholder="email" 
-            onChange={(event) => {
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Email..."
+          onChange={(event) => {
             setEmail(event.target.value);
           }}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="mobileno">Mobile Number</label>
-          <input type="text" name="mobileno" placeholder="mobileno" 
-            onChange={(event) => {
+        />
+        <input
+          type="number"
+          placeholder="Mobile_No..."
+          onChange={(event) => {
             setMobile(event.target.value);
           }}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="text" name="password" placeholder="password" 
-            onChange={(event) => {
+        />
+        <input
+          type="password"
+          placeholder="Password..."
+          onChange={(event) => {
             setPassword(event.target.value);
-          }}/>
-        
-        </div>
+          }}
+        />
+        <button onClick={register}>Register</button>
       </div>
     </div>
-    <div className="footer">
-      <button type="button" className="btn" onClick={register}> 
-        Register
-      </button>
-    </div>
-    <div>
-      <h5>Already Have An Account? <a class="ml-2" href="./login">Login</a></h5>
-    </div>
-  </div>
-  <Footer/>
-  </div>
   );
 }
 

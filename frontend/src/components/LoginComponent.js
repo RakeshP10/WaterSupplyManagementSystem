@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import "./style.css";
-import loginImg from "../login.svg";
+import "./Login.css";
 import Axios from "axios";
+
 import { useHistory } from "react-router-dom";
-import Footer from './FooterComponent';
-import Navbar1 from './Navbar';
-function Login(props) {
+
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,8 +20,7 @@ function Login(props) {
       if (response.data.loggedIn) {
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("username", response.data.username);
-        history.push("/userview");
-        alert("Sucessfully Logged In");
+        history.push("/");
       } else {
         setErrorMessage(response.data.message);
       }
@@ -30,40 +28,27 @@ function Login(props) {
   };
 
   return (
-    <div>
-    <Navbar1/>
-<div className="base-container" ref={props.containerRef}>
-        <div className="header">Login</div>
-        <div className="content">
-          <div className="image">
-            <img src={loginImg} />
-          </div>
-          <div className="form">
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" 
-                onChange={(event) => {
-                setUsername(event.target.value);
-              }}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" 
-                onChange={(event) => {
-                setPassword(event.target.value);
-              }}/>
-            </div>
-          </div>
-        </div>
-        <div className="footer">
-          <button type="button" className="btn" onClick={login}>
-            Login
-          </button>
-          <h1 style={{ color: "red" }}>{errorMessage} </h1>
-        </div>
+    <div className="Login">
+      <h1>Login</h1>
+      <div className="LoginForm">
+        <input
+          type="text"
+          placeholder="Username..."
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+        <input
+          type="password"
+          placeholder="Password..."
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+        <button onClick={login}>Login</button>
+        <h1 style={{ color: "red" }}>{errorMessage} </h1>
       </div>
-      <Footer/>
-      </div>
+    </div>
   );
 }
 

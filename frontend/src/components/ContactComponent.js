@@ -1,57 +1,51 @@
-import React, { Component,useState } from 'react';
+import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,Button, Row, Col, Label } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
-import Footer from './FooterComponent';
-import Navbar1 from './Navbar';
-import Axios from "axios";
 
-function Contact(){
-	
-	
-const [firstname, setFirstname] = useState("");
-const [lastname, setLastname] = useState("");
-const [telnum, setTelnum] = useState("");
-const [email, setEmail] = useState("");
-const [message, setMessage] = useState("");
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
+const isNumber = (val) => !isNaN(Number(val));
+const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+
+class Contact extends Component {
+    
+    constructor(props) {
+        super(props);
+        
+        this.handleSubmit = this.handleSubmit.bind(this);
+        
+    }
     
 
-    
-const feedback = () => {
 
-        alert('Thank You for Your Valuable Feedback');
-		
-		Axios.post("http://localhost:3001/user/contactus", {
-		  firstname: firstname,
-		  lastname: lastname,
-		  telnum: telnum,
-		  email: email,
-		  message : message,
-		}).then((response) => {
-		  console.log(response);
-		});
-  };
-   
+      handleSubmit(values) {
+        console.log('Current State is: ' + JSON.stringify(values));
+        alert('Current State is: ' + JSON.stringify(values));
+    }
+    
+    
+    render(){
      return(
-         <div>
-             <Navbar1/>
         <div className="container">
             <div className="row">
-                <Breadcrumb>
+            <Breadcrumb>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Contact Us</BreadcrumbItem>
                 </Breadcrumb>
                 <div className="col-12">
-                    <h3>Contact Us</h3>
+                    <h3>Contact Us&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chat App</h3>
                     <hr />
                 </div>              
             </div>
         
             <div className="row row-content">
                 <div className="col-12">
-                <h3>Location Information</h3>
+                <h3>Location Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We are always here for you!</h3>
                 </div>
-                <div className="col-12 col-sm-4 offset-sm-1">
+                <div className="col-12 col-sm-4">
+                <br></br>
                         <h5>Our Address</h5>
                          <address>
                             Pimpri Chinchwad College<br />
@@ -60,17 +54,39 @@ const feedback = () => {
                             <i className="fa fa-phone"></i>: +9999999999<br />
                             <i className="fa fa-fax"></i>: +1111111111<br />
                             <i className="fa fa-envelope"></i>: <a href="mailto:mail@gmail.com">mail@gmail.com</a>
-                            </address>
-                </div>
-                <div className="col-12 col-sm-6 offset-sm-1">
-                    <h5>Map of our Location</h5>
-                </div>
-                <div className="col-12 col-sm-11 offset-sm-1">
-                    <div className="btn-group" role="group">
+                            <div className="btn-group" role="group">
+                            
                         <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
                         <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
                         <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
                     </div>
+                    
+                    <h5>Your need our service!</h5>
+                    <h6>After proceeding buy product. Our delivery boy will directed to your address for your delievery. Delievery should be take 2 to 3 days to reach at your home.</h6>
+                    <br></br>
+                    <h5>We serve your expectations! ❤️</h5>
+                    <h5>So be excited, & buy now!</h5>
+                    <h6></h6>
+                            </address>
+                </div>
+                
+                <div className="col-12 col-sm-6 offset-sm-2">
+                    <br></br>
+                    <h5>Talk with us online, Solve your queries!</h5>
+                    <h6>You can solve your each and every query using this online chat application.
+                        If you have any doubt about product, payment, order, delivery, service and more believe us, you are one step behind to get procced by clicking on this "CHAT" button. The intension and moto to create this service is to make interface user-friendly, upgrading our service and also for achieving faith of each and every customer.</h6> 
+                    
+                    <h5>Steps to Proceed</h5>
+                    <h6>Step 1 : Click on "CHAT" button.</h6>
+                    <h6>Step 2 : Chat login windows will open, enter your name and query ID.</h6>
+                    <h6>Step 3 : Click on "Let's Talk" button.</h6>
+                    <h6>Finally, you are connected with us!</h6>
+                    <br></br>
+                    <h5>Let's Talk</h5>
+                    <a role="button" className="btn btn-primary"s href="https://vibrant-edison-8ec368.netlify.app/"><i className="fa fa-envelope-o"></i>  <b>CHAT!</b></a>
+                </div>
+                <div className="col-12 col-sm-11">
+                    
                 </div>
             </div>
          
@@ -82,53 +98,100 @@ const feedback = () => {
                 </div>
                 <div className="col-12 col-md-9">
     
-                    <LocalForm>
+                    <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                     <Row className="form-group">
                         <Label htmlFor="firstname" md={2}>First Name</Label>
                         <Col md={10}>
-                             <input
-								  type="text"
-								  placeholder="First Name"
-								  onChange={(event) => {setFirstname(event.target.value);
-								  }}
-							/>
+                            <Control.text model=".firstname" id="firstname" name="firstname"
+                                placeholder="First Name"
+                                className="form-control"
+                                validators={{
+                                    required, minLength: minLength(3), maxLength: maxLength(15)
+                                }}
+                                    />
+                            <Errors
+                                className="text-danger"
+                                model=".firstname"
+                                show="touched"
+                                messages={{
+                                    required: 'Required',
+                                    minLength: 'Must be greater than 2 characters',
+                                    maxLength: 'Must be 15 characters or less'
+                                }}
+                                />
                         </Col>
                     </Row>
                     <Row className="form-group">
                         <Label htmlFor="lastname" md={2}>Last Name</Label>
                         <Col md={10}>
-							<input
-							  type="text"
-							  placeholder="Last Name"
-							  onChange={(event) => {setLastname(event.target.value);
-							  }}
-							/>
+                            <Control.text model=".lastname" id="lastname" name="lastname"
+                                placeholder="Last Name"
+                                className="form-control"
+                                validators={{
+                                    required, minLength: minLength(3), maxLength: maxLength(15)
+                                }}
+                                    />
+                            <Errors
+                                className="text-danger"
+                                    model=".lastname"
+                                show="touched"
+                                messages={{
+                                    required: 'Required',
+                                    minLength: 'Must be greater than 2 characters',
+                                    maxLength: 'Must be 15 characters or less'
+                                }}
+                                />
                         </Col>
                     </Row>
                     <Row className="form-group">
                         <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                         <Col md={10}>
-							<input
-							  type="text"
-							  placeholder="Tel. Number"
-							  onChange={(event) => {setTelnum(event.target.value);
-							  }}
-							/>
+                            <Control.text model=".telnum" id="telnum" name="telnum"
+                                placeholder="Tel. Number"
+                                className="form-control"
+                                validators={{
+                                    required, minLength: minLength(3), maxLength: maxLength(15), isNumber
+                                }}
+                                    />
+                            <Errors
+                                className="text-danger"
+                                model=".telnum"
+                                show="touched"
+                                messages={{
+                                    required: 'Required',
+                                    minLength: 'Must be greater than 2 numbers',
+                                    maxLength: 'Must be 15 numbers or less',
+                                    isNumber: 'Must be a number'
+                                }}
+                                />
                         </Col>
                     </Row>
                     <Row className="form-group">
                         <Label htmlFor="email" md={2}>Email</Label>
                             <Col md={10}>
-							<input
-							  type="text"
-							  placeholder="Email"
-							  onChange={(event) => {setEmail(event.target.value);
-							  }}
-							/>
+                            <Control.text model=".email" id="email" name="email"
+                                placeholder="Email"
+                                className="form-control"
+                                validators={{
+                                    required, validEmail
+                                }}
+                                    />
+                            <Errors
+                                className="text-danger"
+                                model=".email"
+                                show="touched"
+                                messages={{
+                                    required: 'Required',
+                                    validEmail: 'Invalid Email Address'
+                                }}
+                                />
                         </Col>
                     </Row>
                     
-   
+    
+    
+    
+    
                     <Row className="form-group">
                         <Col md={{size: 6, offset: 2}}>
                             <div className="form-check">
@@ -151,18 +214,16 @@ const feedback = () => {
                     <Row className="form-group">
                         <Label htmlFor="message" md={2}>Your Feedback</Label>
                         <Col md={10}>
-						 <input
-					  	type="text"
-					  	placeholder="Discription"
-					  	onChange={(event) => {setMessage(event.target.value);
-					  }}
-					/>
+                            <Control.textarea model=".message" id="message" name="message"
+                                rows="12"
+                                className="form-control" />
                         </Col>
                     </Row>
                     <Row className="form-group">
                         <Col md={{size:10, offset: 2}}>
-                            <Button onClick={feedback}> Send Feedback</Button>
-							
+                            <Button type="submit" color="primary">
+                            Send Feedback
+                            </Button>
                         </Col>
                     </Row>
                 </LocalForm>
@@ -170,15 +231,14 @@ const feedback = () => {
             </div>
         </div>
          
-
-         </div>
-         <Footer/>
+         
+         
         </div>
          
 
          
     );   
-    
+    }
     
     
     

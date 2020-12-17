@@ -6,8 +6,7 @@ import img1 from "../assets/select.png";
 import img2 from "../assets/order.png";
 import img3 from "../assets/delivered.jpg";
 import img4 from "../assets/savetime.jpg";
-import Navbar1 from './Navbar';
-import Footer from './FooterComponent';
+
 const HomeImg = props =>{
    return(
        <div className="card text-center">
@@ -25,7 +24,6 @@ const HomeImg = props =>{
 function Home(props) {
     return(
       <>
-      <Navbar1/>
         <div className="home-container">
               <h1>Welcome to our Website</h1>
               <div className='home-btns'>
@@ -67,8 +65,7 @@ function Home(props) {
                     </div>                    
                     
                 </div>
-            </div> 
-         <Footer/>       
+            </div>          
       </>     
     );
 }
