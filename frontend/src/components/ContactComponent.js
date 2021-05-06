@@ -83,7 +83,7 @@ class Contact extends Component {
                     <h6>Finally, you are connected with us!</h6>
                     <br></br>
                     <h5>Let's Talk</h5>
-                    <a role="button" className="btn btn-primary"s href="https://vibrant-edison-8ec368.netlify.app/"><i className="fa fa-envelope-o"></i>  <b>CHAT!</b></a>
+                    <a role="button" className="btn btn-primary"s href="https://wsmschatapp.netlify.app/"><i className="fa fa-envelope-o"></i>  <b>CHAT!</b></a>
                 </div>
                 <div className="col-12 col-sm-11">
                     
